@@ -20,7 +20,7 @@ class BlockTranslator < Translator
     end
     
     reads.times do
-      s << @target.read(@block_size)
+      s << read_block
     end
     
     if oddsize
@@ -29,6 +29,10 @@ class BlockTranslator < Translator
     else
       s
     end
+  end
+
+  def read_block
+    @target.read @block_size
   end
   
   def write(s, offset = nil)
@@ -53,8 +57,11 @@ class BlockTranslator < Translator
     end
     
     writes.times do |i|
-      @target.write s[i * @block_size, @block_size]
+      write_block s[i * @block_size, @block_size]
     end
   end
   
+  def write_block(s)
+    @target.write s
+  end
 end
