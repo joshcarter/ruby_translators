@@ -1,5 +1,13 @@
 require_relative 'translator'
 
+#
+# BlockTranslator: does IO operations on multiples of a given block
+# size. Subclasses should override `read_block` and `write_block`, and
+# possibly also `initialize` so that they can pin their block size.
+#
+# NOTE: this translator does no caching. If it needs to expand a read
+# to fill out the block size, the extra is simply thrown away.
+#
 class BlockTranslator < Translator
   attr_reader :block_size
   

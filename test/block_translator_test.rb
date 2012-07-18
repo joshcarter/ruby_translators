@@ -1,5 +1,11 @@
 require_relative 'test_helper'
 
+#
+# To test the block translator, we can't just observe side effects; we
+# have more detailed expectations about how the target is used. Mock
+# objects give us exactly the level of control needed to verify
+# correct behavior.
+#
 class BlockTranslatorTest < Test::Unit::TestCase
   def test_read_expands_to_block_size
     source = mock()

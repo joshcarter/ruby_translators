@@ -1,5 +1,8 @@
 require_relative 'translator'
 
+#
+# Rot13Translator: everybody's favorite super-strong crypto!
+#
 class Rot13Translator < Translator
   def read
     rot13 @target.read
